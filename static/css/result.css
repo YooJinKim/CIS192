@@ -1,0 +1,47 @@
+body {
+    font-family: 'Oswind', sans-serif;
+    background: #4256b2;
+}
+
+.container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    margin: 0px auto;
+    font-size: 3.0em;
+    color: white;
+}
+
+h2 {
+    margin: 0px auto;
+    color: white;
+}
+
+.content {
+    margin: 10px auto;
+    width: 476px;
+    background: white;
+}
+
+.message {
+    margin: 10px 10px 10px 10px;
+    padding-top: 10px;
+}
+
+.meme {
+    margin: 5px 5px 5px 5px;
+    width: 98%;
+    max-height: 500px;
+}
+
+button {
+    float: right;
+    clear: both;
+    background: transparent;
+    border: transparent;
+    color: white;
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>OUPSCCBOT</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/result.css') }}" />
+    </head>
+    <body>
+        <div class="container">
+            <h1> {{ name }}</h1>
+            <h2> {{ reactions }} / {{ count }} </h2>
+            <div class="content">
+                <div class="message">
+                    <text> {{message }}</text>
+                </div>
+                <img class="meme" src= {{ meme }} >
+            </div>
+            <div class="return">
+                <form action="/search">
+                    <button type="submit" value="/search">return</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

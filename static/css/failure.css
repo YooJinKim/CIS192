@@ -1,0 +1,25 @@
+body {
+    font-family: 'Oswind', sans-serif;
+    background: #4256b2;
+}
+
+.container {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    margin: 0px auto;
+    font-size: 3.0em;
+    color: white;
+}
+
+button {
+    float: right;
+    clear: both;
+    background: transparent;
+    border: transparent;
+    color: white;
+}

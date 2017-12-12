@@ -7,7 +7,9 @@ from feed import *
 
 class Scraper(object):
     def __init__(self):
+        # APP ID
         app = '783412255178688'
+        # APP Secret
         secret = '32cdc4b39d029e2fa68916dc0a5bf6bf'
         self.access_token = app + '|' + secret
         self.feeds = defaultdict(lambda: [])

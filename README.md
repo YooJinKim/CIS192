@@ -1,12 +1,14 @@
 # CIS192 OUPSCCBOT
 
-Yoojin Kim
+_by Yoojin Kim_
 
 Bot that scrapes Official Unofficial Penn Squirrel Catching Club (OUPSCC) Facebook Group.
 
 Display meme with greatest number of reactions for given keyword(s).
 
 ## Execution
+
+App ID, and App Secret should be set before execution.
 
 ```
 python3 app.py

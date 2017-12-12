@@ -1,6 +1,7 @@
 # CIS192 OUPSCCBOT
 
 Bot that scrapes Official Unofficial Penn Squirrel Catching Club (OUPSCC) Facebook Group.
+
 Display meme with greatest number of reactions for given keyword(s).
 
 # Structure
@@ -21,5 +22,7 @@ flask framework for bot
 # Modules
 
 collections (defaultdict, Counter): Store fields scraped from feeds
+
 heapq (heappush, heappop): Store memes in descending order of number of reactions
+
 flask: Framework for bot

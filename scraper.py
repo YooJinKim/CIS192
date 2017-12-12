@@ -1,25 +1,25 @@
-import json
+from json import loads
 from re import search
 from urllib.request import urlopen, Request
-from queue import PriorityQueue
+from heapq import heappush
 from collections import defaultdict, Counter
-
+from feed import *
 
 class Scraper(object):
     def __init__(self):
         self.access_token = '783412255178688|32cdc4b39d029e2fa68916dc0a5bf6bf'
-        self.feeds = defaultdict(lambda: PriorityQueue())
+        self.feeds = defaultdict(lambda: [])
         self.counter = Counter()
         self.scrape_group()
 
     def tokenize(self, message, name, picture, reactions):
         if not message:
-            self.feeds[''].put((-1 * reactions, message, name, picture, reactions))
+            heappush(self.feeds[''], Feed(message, name, picture, reactions))
             self.counter[''] += reactions
         else:
             for token in message.split():
                 token = token.upper()
-                self.feeds[token].put((-1 * reactions, message, name, picture, reactions))
+                heappush(self.feeds[token], Feed(message, name, picture, reactions))
                 self.counter[token] += reactions
 
     def scrape_feed(self, post):
@@ -38,7 +38,7 @@ class Scraper(object):
             until = '' if until is '' else "&until=" + until
             paging = '' if until is '' else "&__paging_token=" + paging
             url = oupscc + feed + until + paging
-            posts = json.loads((urlopen(Request(url)).read()))
+            posts = loads((urlopen(Request(url)).read()))
 
             for post in posts['data']:
                 self.scrape_feed(post)

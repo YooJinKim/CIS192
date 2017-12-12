@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, request, url_for
 from scraper import *
-from queue import PriorityQueue
+from heapq import heappush, heappop
 import logging
 
 app = Flask(__name__)
@@ -27,23 +27,23 @@ def search():
 def typed():
     global feeds
     global counter
-    que = PriorityQueue()
-    counts = PriorityQueue()
+    que = []
+    counts = []
     text = request.form['text']
     if not text:
-        feed = feeds[''].queue[0]
-        que.put(feed)
-        counts.put((feed[0], counter['']))
+        feed = feeds[''][0]
+        heappush(que, feed)
+        heappush(counts, (feed.reactions, counter['']))
     else:
         for token in text.split():
             token = token.upper()
             if token in feeds:
-                feed = feeds[token].queue[0]
-                que.put(feed)
-                counts.put((feed[0], counter[token]))
-    if que.queue:
-        (_, message, name, picture, reactions) = que.get()
-        (_, count) = counts.get()
+                feed = feeds[token][0]
+                heappush(que, feed)
+                heappush(counts, (feed, counter[token]))
+    if que:
+        [message, name, picture, reactions] = heappop(que).values
+        (feed, count) = heappop(counts)
         return render_template(
             'result.html', name=name, reactions=reactions, count=count,
             message=message, meme=picture)

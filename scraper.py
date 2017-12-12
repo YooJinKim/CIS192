@@ -37,10 +37,10 @@ class Scraper(object):
     def scrape_group(self, until='', paging=''):
         oupscc = 'https://graph.facebook.com/v2.11/966590693376781'
         feed = '/feed/?limit=100&access_token=' + self.access_token
-        feed += "&fields=message,from,name,full_picture,reactions.limit(0).summary(true)"
+        feed += '&fields=message,from,name,full_picture,reactions.limit(0).summary(true)'
         while True:
-            until = '' if until is '' else "&until=" + until
-            paging = '' if until is '' else "&__paging_token=" + paging
+            until = '' if until is '' else '&until=' + until
+            paging = '' if until is '' else '&__paging_token=' + paging
             url = oupscc + feed + until + paging
             posts = loads((urlopen(Request(url)).read()))
 

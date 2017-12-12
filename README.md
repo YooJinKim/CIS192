@@ -42,6 +42,10 @@ flask framework for bot.
 
 collections (defaultdict, Counter): Store fields scraped from feeds
 
+re (search): Retreive paging number from url
+
 heapq (heappush, heappop): Store memes in descending order of number of reactions
 
 flask: Framework for bot
+
+json (loads): Retreive feeds as Python object

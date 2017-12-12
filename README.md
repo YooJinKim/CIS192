@@ -4,30 +4,28 @@ Bot that scrapes Official Unofficial Penn Squirrel Catching Club (OUPSCC) Facebo
 
 Display meme with greatest number of reactions for given keyword(s).
 
-# Structure
+## Structure
 
-feed.py
+__feed.py__
 
 Defines Feed class that stores message, name, picture, and reactions fields associatied with the feed
 
-__lt__ and __eq__ are implemented so that Feed can be stored in heapq
+lt and eq are implemented so that Feed can be stored in heapq
 
 
-scraper.py
+__scraper.py__
 
 Scrapes OUPSCC Facebook Group and stores the memes in heapq
 
-app.py
+__app.py__
 
 flask framework for bot
-
+```
 '/': Scrape memes
-
 '/search': Enables user to enter keyword(s)
-
 '/result': Display meme with greatest number of reactions
-
-# Modules
+```
+## Modules
 
 collections (defaultdict, Counter): Store fields scraped from feeds
 

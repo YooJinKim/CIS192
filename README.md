@@ -8,7 +8,7 @@ Display meme with greatest number of reactions for given keyword(s).
 
 ## Execution
 
-App ID, and App Secret should be set before execution.
+App ID, and App Secret should be set before execution (in scraper.py)
 
 ```
 python3 app.py
@@ -22,13 +22,11 @@ Defines Feed class that stores message, name, picture, and reactions fields asso
 
 lt and eq are implemented so that Feed can be stored in heapq.
 
-
 ### scraper.py
 
 Scrapes OUPSCC Facebook Group and stores the memes in heapq.
 
-Generator is used to retrieve all the tokens that a message on meme contains.
-Each
+Generator is used to retrieve all the whitespace separated tokens that a message on meme contains.
 
 ### app.py
 

@@ -4,6 +4,7 @@ from urllib.request import urlopen, Request
 from heapq import heappush
 from collections import defaultdict, Counter
 from feed import *
+from string import punctuation
 
 class Scraper(object):
     def __init__(self):
@@ -19,6 +20,12 @@ class Scraper(object):
     def tokenize(self, message):
         if message:
             for token in message.split():
+                index = len(token)
+                for i in range(len(token) - 1, -1, -1):
+                    if token[i] not in punctuation:
+                        break
+                    index -= 1
+                token = token[:index]
                 yield token.upper()
         else:
             yield ''

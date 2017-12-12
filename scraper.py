@@ -7,27 +7,31 @@ from feed import *
 
 class Scraper(object):
     def __init__(self):
-        self.access_token = '783412255178688|32cdc4b39d029e2fa68916dc0a5bf6bf'
+        app = '783412255178688'
+        secret = '32cdc4b39d029e2fa68916dc0a5bf6bf'
+        self.access_token = app + '|' + secret
         self.feeds = defaultdict(lambda: [])
         self.counter = Counter()
         self.scrape_group()
 
-    def tokenize(self, message, name, picture, reactions):
-        if not message:
-            heappush(self.feeds[''], Feed(message, name, picture, reactions))
-            self.counter[''] += reactions
-        else:
+    def tokenize(self, message):
+        if message:
             for token in message.split():
-                token = token.upper()
-                heappush(self.feeds[token], Feed(message, name, picture, reactions))
-                self.counter[token] += reactions
+                yield token.upper()
+        else:
+            yield ''
+
+    def store(self, message, name, picture, reactions):
+        for token in self.tokenize(message):
+            heappush(self.feeds[token], Feed(message, name, picture, reactions))
+            self.counter[token] += reactions
 
     def scrape_feed(self, post):
         message = post['message'] if 'message' in post else ''
         name = post['from']['name']
         picture = post['full_picture'] if 'full_picture' in post else ''
         reactions = post['reactions']['summary']['total_count'] if 'reactions' in post else 0
-        self.tokenize(message, name, picture, reactions)
+        self.store(message, name, picture, reactions)
         return(message, name, picture, reactions)
 
     def scrape_group(self, until='', paging=''):
